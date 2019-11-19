@@ -2,38 +2,40 @@
 style.
 	.navbar-nav{flex-direction: row;}
 	ul.navbar-nav li{margin:0px !important;}
-nav.navbar.navbar-expand-lg.navbar-absolute.fixed-top.navbar-transparent
+nav.navbar.navbar-expand-lg.navbar-absolute.fixed-top.navbar-transparent.py-3
 	.container-fluid
 		.navbar-wrapper
-			.navbar-toggle
-				button.navbar-toggler(type="button")
+			.navbar-toggle.d-block
+				button.navbar-toggler.d-block(type="button", data-toggle='sidebar')
 					span.navbar-toggler-bar.bar1
 					span.navbar-toggler-bar.bar2
 					span.navbar-toggler-bar.bar3
-			a.navbar-brand(href="#pablo") 라.달.배
-		//button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation")
-		//	span.navbar-toggler-bar.navbar-kebab
-		//	span.navbar-toggler-bar.navbar-kebab
-		//	span.navbar-toggler-bar.navbar-kebab
+			.d-flex.justify-content-between
+				img(src='/images/logo.png', width='70px')
+				a.navbar-brand.py-0(href="/", style='line-height:70px;') 라.달.배
 		form.collapse.w-100#collapseSearch
 			.input-group.no-border
 				input.form-control(type="text" value="" placeholder="검색...")
 		#navigation
 			ul.navbar-nav
-				li#headingSearch.nav-item
-					a.nav-link.btn-magnify(href="#collapseSearch", role='button', data-toggle='collapse', aria-expanded='false', aria-controls='collapseSearch')
+				li#headingSearch.nav-item.text-center
+					a.nav-link.btn-magnify.pb-0(href="#collapseSearch", role='button', data-toggle='collapse', aria-expanded='false', aria-controls='collapseSearch')
 						i.nc-icon.nc-zoom-split
+					p.text-dark 검색
 				if(user)
 					li.nav_item
-						a.nav-link.btn-magnify(data-toggle='modal', data-target='#modalProfile')
+						a.nav-link.btn-magnify.pb-0(data-toggle='modal', data-target='#modalProfile')
 							i.nc-icon.nc-single-02
+						p.text-dark #{user.user_name} 님
 				else
-					li.nav-item
-						a.nav-link.btn-rotate(data-toggle='modal', data-target='#modalLogin')
+					li.nav-item.text-center
+						a.nav-link.btn-rotate.pb-0(data-toggle='modal', data-target='#modalLogin')
 							i.nc-icon.nc-single-02
-				li.nav-item.btn-rotate
-					a.nav-link.bnt-magnify
+						p.text-dark 로그인
+				li.nav-item.btn-rotate.text-center
+					a.nav-link.bnt-magnify.pb-0
 						i.nc-icon.nc-bell-55
+					p.text-dart 알림
 // login 모달
 #modalLogin.modal.fade(tabindex="-1" role="dialog" aria-labelledby="modalLoginLabel" aria-hidden="true")
 	.modal-dialog(role="document")
@@ -80,3 +82,4 @@ nav.navbar.navbar-expand-lg.navbar-absolute.fixed-top.navbar-transparent
 			.modal-footer
 				a.btn.btn-warning(href='/users/logout') Log out
 				button.btn.btn-danger(type="button" data-dismiss="modal") Close
+
