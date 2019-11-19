@@ -11,10 +11,10 @@ const getTitle = (boardType) => {
       title = '자유게시판';
       break;
     case 'wedding':
-      title = '예신들의 결혼준비 Q&A';
+      title = '예신들의 결혼준비';
       break;
     case 'honeymoon':
-      title = '주부선배 신혼생활 Q&A';
+      title = '주부선배 신혼생활';
       break;
     case 'tips':
       title = '주방요리꿀팁';
