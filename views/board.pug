@@ -24,6 +24,11 @@ block content
                    td #{idx + 1}
                    td
                      a(href='/board/read/' + row._id) #{row.title}
+                     if(row.reply.length > 0)
+                       span.text-danger [ #{row.reply.length} ]
                    td #{row.writer}
-                   td #{date.toLocaleString('ko')}
+                   td #{date.toLocaleDateString('ko')}
                    td #{row.hit_count}
+block append_js
+  script.
+    console.log(!{JSON.stringify(list)})

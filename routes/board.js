@@ -34,22 +34,22 @@ router.get('/:boardType', async (req, res) => {
   let user = res.locals.user_info;
   let boardType = req.params.boardType;
   console.log('user : ', user);
-  let list = await boardModel.find({boardType:boardType}).sort({created_at:-1});
+  let list = await boardModel.find({boardType: boardType}).sort({created_at: -1});
   res.render('board', {
     title: getTitle(boardType),
     side: boardType,
     user: user,
-    list:list
+    list: list
   });
 });
 // 글 쓰기 화면으로 이동
 router.get('/write/:boardType', middle.checkAuth, (req, res) => {
   let user = res.locals.user_info;
   let boardType = req.params.boardType;
-  res.render('board_write',{
-    title:getTitle(boardType),
-    user:user,
-    side:boardType,
+  res.render('board_write', {
+    title: getTitle(boardType),
+    user: user,
+    side: boardType,
   })
 });
 // 글 쓰기
@@ -59,24 +59,44 @@ router.post('/:boardType', middle.checkAuth, async (req, res) => {
   let boardType = req.params.boardType;
   let {title, writer, content} = req.body;
   let board = new boardModel({
-    title:title,
-    writer:writer,
-    content:content,
-    boardType:boardType,
-    user_id:user._id
+    title: title,
+    writer: writer,
+    content: content,
+    boardType: boardType,
+    user_id: user._id
   });
   let result = await board.save();
   res.json(result);
 });
 // 글 읽기
-router.get('/read/:id', async(req, res) => {
+router.get('/read/:id', async (req, res) => {
   let id = req.params.id;
-  let doc = await boardModel.findOne({_id:id});
+  let doc = await boardModel.findOne({_id: id});
   console.log('doc : ', doc);
   // 조회수 올리기
-  await boardModel.updateOne({_id:id}, {hit_count:doc.hit_count+1});
+  await boardModel.updateOne({_id: id}, {hit_count: doc.hit_count + 1});
   res.render('board_read', {
-    doc:doc
+    doc: doc
   })
+});
+// 댓글 달기
+router.post('/reply/:content_id', middle.checkAuth, async (req, res) => {
+  let user = res.locals.user_info;
+  if(!user){
+    res.json({message:'사용자 정보가 없습니다. ', code:-1});
+    return false;
+  }
+  let result = await boardModel.updateOne({_id: mongoose.Types.ObjectId(req.params.content_id)},
+    {
+      $push:{
+        reply:{
+          _id: user._id,
+          name: req.body.name,
+          pw: req.body.pw,
+          content: req.body.content
+        }
+      }
+    });
+  res.json({message:'입력완료', code:1, result:result});
 });
 module.exports = router;
