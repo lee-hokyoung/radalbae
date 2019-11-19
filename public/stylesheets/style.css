@@ -9,14 +9,18 @@ ul#radalbae_nav li p:before{
   content:'';
   position: absolute;
   background: url(/images/close_pot.svg) no-repeat;
+  -webkit-background-size: contain;
+  background-size: contain;
   width: 1.4em;
   height: 1.3em;
   left: 0;
 }
-ul#radalbae_nav li p:hover:before{
+ul#radalbae_nav li:hover p:before, ul#radalbae_nav li.active p:before{
   content:'';
   position: absolute;
-  background: url(/images/open_pot.svg) no-repeat;
+  background: url(/images/open_pot_new.svg) no-repeat;
+  -webkit-background-size: contain;
+  background-size: contain;
   width: 1.4em;
   height: 1.3em;
   left: 0;

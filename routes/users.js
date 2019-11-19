@@ -55,7 +55,7 @@ router.post('/login', (req, res, next) => {
         _id:user._id
       };
       const token = jwt.sign(payload, process.env.JWT_SECRET,
-        {expiresIn:'60m', issuer:'radalbae', subject:'userInfo'});
+        {expiresIn:'1d', issuer:'radalbae', subject:'userInfo'});
       await User.updateOne({user_id:user.user_id}, {token:token});
       console.log('token : ', token);
       res.cookie('access_token', token, {
