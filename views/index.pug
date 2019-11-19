@@ -1,0 +1,130 @@
+extends layout
+
+block content
+  .content
+    .row
+      .col-md-12
+        .card
+          .card-header
+            h4.card-title  자유게시판
+          .card-body
+            table.table
+              thead.text-primary
+                th 번호
+                th 제목
+                th 작성자
+                th 작성일
+              tbody
+                each row, idx in freeBoard
+                  - var date = new Date(row.created_at)
+                  tr
+                    td #{idx + 1}
+                    td
+                      a(href='/board/read/' + row._id) #{row.title}
+                    td #{row.writer}
+                    td #{date.toLocaleDateString('ko')}
+    .row
+      .col-md-6
+        .card
+          .card-header
+            h4.card-title  예신들의 결혼준비
+          .card-body
+            table.table
+              thead.text-primary
+                th 번호
+                th 제목
+                th 작성자
+                th 작성일
+              tbody
+                each row, idx in wedding
+                  - var date = new Date(row.created_at)
+                  tr
+                    td #{idx + 1}
+                    td
+                      a(href='/board/read/' + row._id) #{row.title}
+                    td #{row.writer}
+                    td #{date.toLocaleDateString('ko')}
+      .col-md-6
+        .card
+          .card-header
+            h4.card-title  주부선배 신혼생활
+          .card-body
+            table.table
+              thead.text-primary
+                th 번호
+                th 제목
+                th 작성자
+                th 작성일
+              tbody
+                each row, idx in honeymoon
+                  - var date = new Date(row.created_at)
+                  tr
+                    td #{idx + 1}
+                    td
+                      a(href='/board/read/' + row._id) #{row.title}
+                    td #{row.writer}
+                    td #{date.toLocaleDateString('ko')}
+    .row
+      .col-md-4
+        .card
+          .card-header
+            h4.card-title  주방요리꿀팁
+          .card-body
+            table.table
+              thead.text-primary
+                th 번호
+                th 제목
+                th 작성자
+                th 작성일
+              tbody
+                each row, idx in tips
+                  - var date = new Date(row.created_at)
+                  tr
+                    td #{idx + 1}
+                    td
+                      a(href='/board/read/' + row._id) #{row.title}
+                    td #{row.writer}
+                    td #{date.toLocaleDateString('ko')}
+      .col-md-4
+        .card
+          .card-header
+            h4.card-title  생활의 지혜
+          .card-body
+            table.table
+              thead.text-primary
+                th 번호
+                th 제목
+                th 작성자
+                th 작성일
+              tbody
+                each row, idx in wisdom
+                  - var date = new Date(row.created_at)
+                  tr
+                    td #{idx + 1}
+                    td
+                      a(href='/board/read/' + row._id) #{row.title}
+                    td #{row.writer}
+                    td #{date.toLocaleDateString('ko')}
+      .col-md-4
+        .card
+          .card-header
+            h4.card-title  가성비갑 추천추천
+          .card-body
+            table.table
+              thead.text-primary
+                th 번호
+                th 제목
+                th 작성자
+                th 작성일
+              tbody
+                each row, idx in recommend
+                  - var date = new Date(row.created_at)
+                  tr
+                    td #{idx + 1}
+                    td
+                      a(href='/board/read/' + row._id) #{row.title}
+                    td #{row.writer}
+                    td #{date.toLocaleDateString('ko')}
+  block append_js
+    script.
+      console.log(!{JSON.stringify(freeBoard)});

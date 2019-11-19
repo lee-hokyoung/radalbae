@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  .content
+    .row
+      .col-md-12
+        .card
+          .card-header
+            .d-flex.justify-content-between
+              h4.card-title #{title}
+              a.btn.btn-primary.btn-success(href='/board/write/' + side) 글쓰기
+          .card-body
+            table.table
+              thead.text-primary
+                th 번호
+                th 제목
+                th 작성자
+                th 작성일
+                th 조회
+              tbody
+                each row, idx in list
+                 - var date = new Date(row.created_at);
+                 tr
+                   td #{idx + 1}
+                   td
+                     a(href='/board/read/' + row._id) #{row.title}
+                   td #{row.writer}
+                   td #{date.toLocaleString('ko')}
+                   td #{row.hit_count}

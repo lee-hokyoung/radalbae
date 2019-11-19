@@ -1,0 +1,35 @@
+extends layout-kit
+block content
+  .wrapper
+    .page-header.bg-success
+      .filter
+      .container
+        .row
+          .col-lg-4.ml-auto.mr-auto
+            .card.card-register.bg-danger.mw-100
+              h3.title.text-white 회원가입
+              //.social-line.text-center
+              //  a.btn.btn-neutral.btn-facebook.btn-just-icon(href="#pablo")
+              //    i.fa.fa-facebook-square
+              //  a.btn.btn-neutral.btn-google.btn-just-icon(href="#pablo")
+              //    i.fa.fa-google-plus
+              //  a.btn.btn-neutral.btn-twitter.btn-just-icon(href="#pablo")
+              //    i.fa.fa-twitter
+              form.register-form(onsubmit='fnSubmit(); return false;')
+                label ID
+                input.form-control(type="text", placeholder="ID", name='user_name')
+                label Password
+                input.form-control(type="password", placeholder="Password", name='user_pw')
+                label Password 확인
+                input.form-control(type="password", placeholder="Password", name='user_pw_confirm')
+                button.btn.btn-danger.btn-block.btn-round(type='submit') 등록
+              .forgot
+                a.btn.btn-link.btn-danger.text-white(href='/users/login') 기존아이디로 로그인하기
+        .footer.register-footer.text-center
+          h6
+            | ©
+            script.
+              document.write(new Date().getFullYear())
+            | , made with
+            i.fa.fa-heart.heart
+            |  by Ho.IT

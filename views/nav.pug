@@ -1,0 +1,82 @@
+// Navbar
+style.
+	.navbar-nav{flex-direction: row;}
+	ul.navbar-nav li{margin:0px !important;}
+nav.navbar.navbar-expand-lg.navbar-absolute.fixed-top.navbar-transparent
+	.container-fluid
+		.navbar-wrapper
+			.navbar-toggle
+				button.navbar-toggler(type="button")
+					span.navbar-toggler-bar.bar1
+					span.navbar-toggler-bar.bar2
+					span.navbar-toggler-bar.bar3
+			a.navbar-brand(href="#pablo") 라.달.배
+		//button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation")
+		//	span.navbar-toggler-bar.navbar-kebab
+		//	span.navbar-toggler-bar.navbar-kebab
+		//	span.navbar-toggler-bar.navbar-kebab
+		form.collapse.w-100#collapseSearch
+			.input-group.no-border
+				input.form-control(type="text" value="" placeholder="검색...")
+		#navigation
+			ul.navbar-nav
+				li#headingSearch.nav-item
+					a.nav-link.btn-magnify(href="#collapseSearch", role='button', data-toggle='collapse', aria-expanded='false', aria-controls='collapseSearch')
+						i.nc-icon.nc-zoom-split
+				if(user)
+					li.nav_item
+						a.nav-link.btn-magnify(data-toggle='modal', data-target='#modalProfile')
+							i.nc-icon.nc-single-02
+				else
+					li.nav-item
+						a.nav-link.btn-rotate(data-toggle='modal', data-target='#modalLogin')
+							i.nc-icon.nc-single-02
+				li.nav-item.btn-rotate
+					a.nav-link.bnt-magnify
+						i.nc-icon.nc-bell-55
+// login 모달
+#modalLogin.modal.fade(tabindex="-1" role="dialog" aria-labelledby="modalLoginLabel" aria-hidden="true")
+	.modal-dialog(role="document")
+		.modal-content
+			.modal-header
+				h5#modalLoginLabel.modal-title 로그인
+				button.close(type="button" data-dismiss="modal" aria-label="Close")
+					span(aria-hidden="true") ×
+			.modal-body
+				form.register-form(onsubmit='fnLogin(); return false;')
+					label ID
+					input.form-control(type="text", placeholder="ID", name='user_name')
+					label Password
+					input.form-control(type="password", placeholder="Password", name='user_pw')
+					button.btn.btn-danger.btn-block.btn-round(type='submit') 확인
+				.forgot
+					a.btn.btn-success.btn-block.btn-round(href='/users/register') 회원가입
+			.modal-footer
+				button.btn.btn-danger(type="button" data-dismiss="modal") Close
+
+// User Profile 모달
+#modalProfile.modal.fade(tabindex="-1" role="dialog" aria-labelledby="modalProfileLabel" aria-hidden="true")
+	.modal-dialog(role="document")
+		.modal-content
+			.modal-header
+				h5#modalProfileLabel.modal-title 내 정보
+				button.close(type="button" data-dismiss="modal" aria-label="Close")
+					span(aria-hidden="true") ×
+			.modal-body
+				h5.card-title 내 정보 수정
+				form
+					.row
+						.col-md-6
+							.form-group
+								label 이름
+								input.form-control(type="text", name='user_name', placeholder="이름", value="")
+						.col-md-6
+							.form-group
+								label Email
+								input.form-control(type="email", name='user_email', placeholder="Email", value="")
+					.row
+						.update.ml-auto.mr-auto
+							button.btn.btn-primary.btn-round(type="submit") Update Profile
+			.modal-footer
+				a.btn.btn-warning(href='/users/logout') Log out
+				button.btn.btn-danger(type="button" data-dismiss="modal") Close

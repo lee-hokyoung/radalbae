@@ -1,0 +1,34 @@
+extends layout-kit
+block content
+  .wrapper
+    .page-header.bg-success
+      .filter
+      .container
+        .row
+          .col-lg-4.ml-auto.mr-auto
+            .card.card-register.bg-danger.mw-100
+              h3.title.text-white 로그인
+              //.social-line.text-center
+              //  a.btn.btn-neutral.btn-facebook.btn-just-icon(href="#pablo")
+              //    i.fa.fa-facebook-square
+              //  a.btn.btn-neutral.btn-google.btn-just-icon(href="#pablo")
+              //    i.fa.fa-google-plus
+              //  a.btn.btn-neutral.btn-twitter.btn-just-icon(href="#pablo")
+              //    i.fa.fa-twitter
+              form.register-form(onsubmit='fnLogin(); return false;')
+                label ID
+                input.form-control(type="text", placeholder="ID", name='user_id')
+                label Password
+                input.form-control(type="password", placeholder="Password", name='user_pw')
+                button.btn.btn-danger.btn-block.btn-round(type='submit') 로그인
+              .forgot
+                a.btn.btn-link.btn-danger.text-white(href='/users/register') 회원가입하기
+                a.btn.btn-link.btn-danger.text-white(href="#") 비밀번호 찾기
+        .footer.register-footer.text-center
+          h6
+            | ©
+            script.
+              document.write(new Date().getFullYear())
+            | , made with
+            i.fa.fa-heart.heart
+            |  by Ho.IT
