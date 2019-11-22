@@ -113,8 +113,7 @@ ul#radalbae_nav li:hover p:before, ul#radalbae_nav li.active p:before {
 
 /*  리스트에서 나머지 컬럶들 작성자, 작성일, 조회수 */
 .last-col div{width:60px;}
-.last-col div:nth-child(2){width:100px; text-align:left;}
-.last-col div:last-child{text-align:left;}
+.last-col div:nth-child(2), .last-col div:last-child{text-align:left;}
 .font-size-8rem{font-size:.8rem;}
 #main_nav{margin:0 -30px;}
 #main_nav p{font-size:.875rem;}

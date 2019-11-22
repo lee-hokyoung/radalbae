@@ -27,7 +27,7 @@ html(lang="en")
           include main_nav
           .container
             block content
-        footer.footer.bg-dark.text-white
+        footer.footer.bg-dark(style='color:#aaa; font-size:13px;')
           .container.px-3
             nav.footer-nav
               ul
@@ -63,15 +63,15 @@ html(lang="en")
                   a(href='#') 이메일 : supereggsong@gmail.com
                 li
                   a(href='#') 광고문의 : 02-2310-2313
-
-              .credits
-                .copyright
-                  | ©
-                  script.
-                    document.write(new Date().getFullYear())
-                  | , made with
-                  i.fa.fa-heart.heart
-                  |  by Ho.IT
+                li
+                  a(href='#')
+                    //.credits
+                    | ©
+                    script.
+                      document.write(new Date().getFullYear())
+                    | , made with
+                    i.fa.fa-heart.heart
+                    |  by Ho.IT
     // Core JS Files
     script(src="/nm/jquery/dist/jquery.min.js")
     script(src="/nm/bootstrap/dist/js/bootstrap.bundle.min.js")
