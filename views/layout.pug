@@ -27,7 +27,51 @@ html(lang="en")
           include main_nav
           .container
             block content
+        footer.footer.bg-dark.text-white
+          .container.px-3
+            nav.footer-nav
+              ul
+                li
+                  a(href="#") 사이트소개
+                li
+                  a(href="#") 회원약관
+                li
+                  a(href="#") 개인정보취급방침
+                li
+                  a(href="#") 책임한계 및 법적고지
+                li
+                  a(href="#") 광고안내
+                li
+                  a(href="#") 불법자료 신고
+                li
+                  a(href="#") 불량회원 신고
+            nav.footer-nav
+              ul
+                li
+                  a(href='#') 사업자 : 696-07-01380
+                li
+                  a(href='#') 상호 : 호잇(Ho.IT)
+                li
+                  a(href='#') 대표자 : 유민영
+                li
+                  a(href='#') 정보관리책임자 : 이호경
+                li
+                  a(href='#') 소재지 : 서울특별시 금천구 디지털엠파이어 1201
+            nav.footer-nav
+              ul
+                li
+                  a(href='#') 이메일 : supereggsong@gmail.com
+                li
+                  a(href='#') 광고문의 : 02-2310-2313
 
+              .credits
+                .copyright
+                  | ©
+                  script.
+                    document.write(new Date().getFullYear())
+                  | , made with
+                  i.fa.fa-heart.heart
+                  |  by Ho.IT
     // Core JS Files
     script(src="/nm/jquery/dist/jquery.min.js")
     script(src="/nm/bootstrap/dist/js/bootstrap.bundle.min.js")
@@ -47,3 +91,5 @@ html(lang="en")
     script(src="/nm/paper-dashboard-2/assets/demo/demo.js")
     script(src='/javascripts/index.js', type='text/javascript')
     block append_js
+
+
