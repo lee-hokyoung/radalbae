@@ -2,25 +2,29 @@
   //
     Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
   .logo.py-3
-    i.nc-icon.nc-single-02
+    //i.nc-icon.nc-single-02
+    img(src="/images/pilgoo.svg")
     a.text-dark.pl-3(href='/users/login') 로그인
   .sidebar-wrapper
     ul.nav#radalbae_nav
-      li.bg-warning(class=side==='freeBoard'?'active':'')
+      li.bg-warning(class=side === 'freeBoard' ? 'active' : '')
+        a.my-0(href="/board/entire")
+          p 전체글
+      li(class=side==='freeBoard'?'active':'')
         a.my-0(href="/board/freeBoard")
           p 자유게시판
-      li(class=side === 'wedding' ? 'active' : '')
+      li.bg-warning(class=side === 'wedding' ? 'active' : '')
         a.my-0(href="/board/wedding")
-          p 예신들의 결혼준비
-      li.bg-warning(class=side === 'honeymoon' ? 'active' : '')
+          p 예신예랑 결혼준비
+      li(class=side === 'honeymoon' ? 'active' : '')
         a.my-0(href="/board/honeymoon")
           p 주부선배 신혼생활
-      li(class=side === 'tips' ? 'active' : '')
+      li.bg-warning(class=side === 'tips' ? 'active' : '')
         a.my-0(href="/board/tips")
           p 주방요리꿀팁
-      li.bg-warning(class=side === 'wisdom' ? 'active' : '')
+      li(class=side === 'wisdom' ? 'active' : '')
         a.my-0(href="/board/wisdom")
           p 생활의 지혜
-      li(class=side === 'recommend' ? 'active' : '')
+      li.bg-warning(class=side === 'recommend' ? 'active' : '')
         a.my-0(href="/board/recommend")
           p 가성비갑 추천추천

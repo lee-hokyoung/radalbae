@@ -12,6 +12,11 @@ router.get('/', async (req, res, next) => {
     let decoded = jwt.verify(access_token, process.env.JWT_SECRET);
     user = decoded;
   }
+  let allBoard = await boardModel.aggregate([
+    {$match:{}},
+    {$sort:{created_at:-1}},
+    {$limit:5}
+  ]);
   let freeBoard = await boardModel.aggregate([
     {$match:{boardType:'freeBoard'}},
     {$sort:{created_at: -1}},
@@ -46,6 +51,7 @@ router.get('/', async (req, res, next) => {
     title: '라달배에 오신 것을 환영합니다.',
     side:'index',
     user:user,
+    allBoard:allBoard,
     freeBoard:freeBoard,
     wedding:wedding,
     honeymoon:honeymoon,

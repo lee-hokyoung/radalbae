@@ -1,12 +1,15 @@
-nav.navbar.navbar-expand-lg.navbar-dark.bg-white.d-md-block.shadow.mb-3.py-1#main_nav
+nav.navbar.navbar-expand-lg.navbar-dark.d-md-block.shadow.mb-3.py-1#main_nav(style='background-color:#ef8157 !important;')
   .container
     ul.navbar-nav.mx-auto
+      li.nav-item(class=side === 'freeBoard' ? 'active' : '')
+        a.nav-link(href="/board/entire")
+          p 전체글
       li.nav-item(class=side==='freeBoard'?'active':'')
         a.nav-link(href="/board/freeBoard")
           p 자유게시판
       li.nav-item(class=side === 'wedding' ? 'active' : '')
         a.nav-link(href="/board/wedding")
-          p 예신들의 결혼준비
+          p 예신예랑 결혼준비
       li.nav-item(class=side === 'honeymoon' ? 'active' : '')
         a.nav-link(href="/board/honeymoon")
           p 주부선배 신혼생활

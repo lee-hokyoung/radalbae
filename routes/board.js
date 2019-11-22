@@ -7,6 +7,9 @@ const mongoose = require('mongoose');
 const getTitle = (boardType) => {
   let title = '';
   switch (boardType) {
+    case 'entire':
+      title = '전체글';
+      break;
     case 'freeBoard':
       title = '자유게시판';
       break;
@@ -29,12 +32,14 @@ const getTitle = (boardType) => {
   return title;
 };
 
-// 자유게시판 list
+// 게시판 list
 router.get('/:boardType', async (req, res) => {
   let user = res.locals.user_info;
   let boardType = req.params.boardType;
+  let query = {};
   console.log('user : ', user);
-  let list = await boardModel.find({boardType: boardType}).sort({created_at: -1});
+  if(boardType!=='entire') query = {boardType:boardType};
+  let list = await boardModel.find(query).sort({created_at: -1});
   res.render('board', {
     title: getTitle(boardType),
     side: boardType,
@@ -82,14 +87,14 @@ router.get('/read/:id', async (req, res) => {
 // 댓글 달기
 router.post('/reply/:content_id', middle.checkAuth, async (req, res) => {
   let user = res.locals.user_info;
-  if(!user){
-    res.json({message:'사용자 정보가 없습니다. ', code:-1});
+  if (!user) {
+    res.json({message: '사용자 정보가 없습니다. ', code: -1});
     return false;
   }
   let result = await boardModel.updateOne({_id: mongoose.Types.ObjectId(req.params.content_id)},
     {
-      $push:{
-        reply:{
+      $push: {
+        reply: {
           _id: user._id,
           name: req.body.name,
           pw: req.body.pw,
@@ -97,6 +102,6 @@ router.post('/reply/:content_id', middle.checkAuth, async (req, res) => {
         }
       }
     });
-  res.json({message:'입력완료', code:1, result:result});
+  res.json({message: '입력완료', code: 1, result: result});
 });
 module.exports = router;
