@@ -14,7 +14,7 @@ nav.navbar.navbar-expand-lg.navbar-absolute.fixed-top.navbar-transparent.py-2(st
 				a(href='/')
 					img(src='/images/logo.png')
 				a.navbar-brand.py-0(href="/") 라달배
-		form.collapse.w-100#collapseSearch
+		form.w-100.d-none.d-md-block
 			.input-group.no-border
 				input.form-control(type="text" value="" placeholder="검색어를 입력하세요")
 		#navigation
@@ -37,6 +37,10 @@ nav.navbar.navbar-expand-lg.navbar-absolute.fixed-top.navbar-transparent.py-2(st
 					a.nav-link.bnt-magnify.pb-0
 						i.nc-icon.nc-bell-55
 					p.d-none.d-sm-block 알림
+		form.collapse#collapseSearch
+			.input-group.no-border
+				input.form-control(type="text" value="" placeholder="검색어를 입력하세요")
+
 // login 모달
 #modalLogin.modal.fade(tabindex="-1" role="dialog" aria-labelledby="modalLoginLabel" aria-hidden="true")
 	.modal-dialog(role="document")

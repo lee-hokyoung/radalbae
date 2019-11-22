@@ -142,6 +142,7 @@ ul#radalbae_nav li:hover p:before, ul#radalbae_nav li.active p:before {
     margin-left: 3px;
 }
 .footer ul li:last-child     a:after{content:''; background: none;}
+#collapseSearch{width:0; visibility: collapse;}
 /* 모바일 화면(pc 이외의 화면)*/
 @media screen and (max-width: 991px) {
     #main_nav{display:none !important;}
@@ -178,5 +179,7 @@ ul#radalbae_nav li:hover p:before, ul#radalbae_nav li.active p:before {
         -moz-transform: translate3d(210px, 0, 0);
         -ms-transform: translate3d(210px, 0, 0);
         -o-transform: translate3d(210px, 0, 0);
-        transform: translate3d(210px, 0, 0);}
+        transform: translate3d(210px, 0, 0);
+    }
+    #collapseSearch{width:100%; visibility: visible;}
 }
