@@ -30,7 +30,7 @@ nav.navbar.navbar-expand-lg.navbar-absolute.fixed-top.navbar-transparent.py-2(st
 						p.d-none.d-sm-block 내정보
 				else
 					li.nav-item.text-center
-						a.nav-link.btn-rotate.pb-0(data-toggle='modal', data-target='#modalLogin')
+						a.nav-link.btn-rotate.pb-0(data-toggle='modal', data-target='#loginModal')
 							i.nc-icon.nc-single-02
 						p.d-none.d-sm-block 로그인
 				li.nav-item.btn-rotate.text-center
@@ -40,6 +40,32 @@ nav.navbar.navbar-expand-lg.navbar-absolute.fixed-top.navbar-transparent.py-2(st
 		form.collapse#collapseSearch
 			.input-group.no-border
 				input.form-control(type="text" value="" placeholder="검색어를 입력하세요")
+
+#loginModal.modal.mx-auto.fade(tabindex='-1' role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true")
+	.modal-dialog(role='document')
+		.modal-content
+			.modal-header
+				h6#loginModalLabel.modal-title 로그인
+				button.close(type="button" data-dismiss="modal" aria-label="Close")
+					span(aria-hidden="true") ×
+			.modal-body
+				.social.d-flex.justify-content-center
+					a#social_naver(href='#')
+						img(src='/images/naver.PNG', alt='네이버 로그인 아이콘')
+					a#social_kakao(href='#')
+						img(src='/images/kakao_btn.png', alt='카카오 로그인 아이콘')
+				.division.my-4
+					.line.l
+					span or
+					.line.r
+				form.login-form(onsubmit='fnLogin(); return false;')
+					input.form-control.bg-light(type="text", placeholder="Email", name='user_email')
+					input.form-control.bg-light(type="password", placeholder="Password", name='user_pw')
+					button.btn.btn-info.btn-block(type='submit') 로그인
+				.forgot.d-flex.justify-content-between
+					a.btn.btn-success(href='#') 회원가입
+					a.btn.btn-danger(href='#') ID/PW 찾기
+
 
 // login 모달
 #modalLogin.modal.fade(tabindex="-1" role="dialog" aria-labelledby="modalLoginLabel" aria-hidden="true")

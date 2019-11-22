@@ -142,6 +142,27 @@ ul#radalbae_nav li:hover p:before, ul#radalbae_nav li.active p:before {
 }
 .footer ul li:last-child     a:after{content:''; background: none;}
 #collapseSearch{width:0; visibility: collapse;}
+/* login 팝업 창 */
+#loginModal{max-width:345px;}
+#loginModal .social a{margin:0 .5rem;}
+#loginModal .social img{width:40px;}
+#loginModal .division{
+    float: none;
+    margin: 0 auto 0;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+#loginModal .division .line{
+    border-top: 1px solid #DFDFDF;
+    position: absolute;
+    top: 10px;
+    width: 34%;
+}
+#loginModal .division .line.l{left:0}
+#loginModal .division .line.r{right:0}
+#loginModal input{height:50px;}
 /* 모바일 화면(pc 이외의 화면)*/
 @media screen and (max-width: 991px) {
     #main_nav{display:none !important;}
