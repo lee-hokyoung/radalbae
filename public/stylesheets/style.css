@@ -4,7 +4,8 @@
     font-size: 2.5em !important;
     font-weight: 400;
 }
-
+.board_row span{font-size:.785rem;}
+.board_row .last-col{font-size:.73rem;}
 .card-title {
     font-family: 'Jua'
 }
@@ -88,8 +89,9 @@ ul#radalbae_nav li:hover p:before, ul#radalbae_nav li.active p:before {
     color: darkorange;
     font-weight: 800;
 }
-#navigation li{margin:0 20px;}
+#navigation li{margin:0 15px;}
 #navigation li i{font-size:22px;}
+#navigation li p{font-size:.7rem; color:#999;}
 .sidebar .logo{padding-left:15px;}
 /* pc 화면에서 sidebar 숨기기 */
 .sidebar{transform:translate3d(-260px, 0px, 0px);}
@@ -99,8 +101,12 @@ ul#radalbae_nav li:hover p:before, ul#radalbae_nav li.active p:before {
 .navbar .navbar-nav .nav-link{font-size:15px;}
 
 /*  리스트에서 나머지 컬럶들 작성자, 작성일, 조회수 */
-.last-col div{padding-right:10px}
-.last-col div:last-child:before{
+.last-col div{width:60px;}
+.last-col div:nth-child(2){width:100px;}
+.font-size-8rem{font-size:.8rem;}
+#main_nav{margin:0 -30px;}
+#main_nav p{font-size:.875rem;}
+.last-col div.text-muted:last-child:before{
     background: url('/images/eye.svg') no-repeat;
     background-size: 13px;
     display: inline-block;
@@ -108,9 +114,11 @@ ul#radalbae_nav li:hover p:before, ul#radalbae_nav li.active p:before {
     height: 11px;
     content:"";
 }
+#board_card.card .card-title{margin-bottom:0; padding-left:1rem;}
 
-.font-size-8rem{font-size:.8rem;}
+/* 모바일 화면(pc 이외의 화면)*/
 @media screen and (max-width: 991px) {
+    #main_nav{display:none !important;}
     .navbar-brand {
         min-width: 1px;
     }
@@ -135,4 +143,6 @@ ul#radalbae_nav li:hover p:before, ul#radalbae_nav li.active p:before {
     .list-group-flush .list-group-item{
         padding-left: 0;
         padding-right: 0;}
+    .last-col div, .last-col div:nth-child(2){width:inherit;}
+    #board_card.card .card-title{padding-left:0;}
 }
