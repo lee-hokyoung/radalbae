@@ -6,26 +6,38 @@ block content
 			.main-img
 	.row
 		.col-12
-			.card
+			.card.board_card
 				.card-header
-					h4.card-title 전체글
+					.d-flex.justify-content-between
+						h4.card-title 전체글
+						a.text-warning.show-more(href='/board/freeBoard') 더보기
 				.card-body
 					ul.list-group.list-group-flush
-						li.list-group-item.d-none.d-md-block.text-warning.font-weight-bold
-							.row.text-center
-								.col-8 제 목
-								.col-4.d-flex.justify-content-around
-									div 작성자
-									div 작성일
-									div 조회수
-						each row, idx in freeBoard
+						each row, idx in allBoard
 							- var date = new Date(row.created_at)
+							- var boardName = '';
+							case row.boardType
+								when 'freeBoard'
+									- boardName = '[자유게시판]';
+								when 'wedding'
+									-boardName = '[예신들의 결혼준비]';
+								when 'honeymoon'
+									-boardName = '[주부선배 신혼생활]';
+								when 'tips'
+									-boardName = '[주방요리꿀팁]';
+								when 'wisdom'
+									-boardName = '[생활의 지혜]';
+								when 'recommend'
+									-boardName = '[가성비갑 추천추천]';
+
 							li.list-group-item.py-2
 								.row
 									.col-10.col-md-12
 										a.text-dark(href='/board/read/' + row._id)
-											.row.text-center
-												.col-12.col-md-8.text-left(style='font-size:1rem;') #{row.title}
+											.row.text-center.board_row
+												.col-12.col-md-8.text-left
+													span.text-danger.font-weight-bold #{boardName}
+													span.pl-1 #{row.title}
 												.col-8.col-md-4.d-flex.last-col.justify-content-start.justify-content-lg-around
 													.text-muted #{row.writer}
 													.text-muted #{date.toLocaleDateString('ko').substr(2)}
@@ -34,144 +46,138 @@ block content
 
 	.row
 		.col-md-4
-			.card
+			.card.board_card
 				.card-header
-					h4.card-title  자유게시판
+					.d-flex.justify-content-between
+						h4.card-title 자유게시판
+						a.text-warning.show-more.pr-2(href='/board/freeBoard') 더보기
 				.card-body
 					ul.list-group.list-group-flush
-						li.list-group-item.d-none.d-md-block.text-warning.font-weight-bold
-							.row.text-center
-								.col-8 제 목
-								.col-4.d-flex.justify-content-around.last-col
-									div 작성자
-									div 작성일
-									div 조회수
 						each row, idx in freeBoard
 							- var date = new Date(row.created_at)
 							li.list-group-item.py-2
-								.row.text-center
-									.col-12.col-md-8.text-left(style='font-size:1rem;')
-										a.text-dark(href='/board/read/' + row._id) #{row.title}
-									.col-8.col-md-4.d-flex.justify-content-start.last-col
-										.text-muted #{row.writer}
-										.text-muted #{date.toLocaleDateString('ko').substr(2)}
-										.text-muted #{row.hit_count}
+								.row
+									.col-10.col-md-12
+										a.text-dark(href='/board/read/' + row._id)
+											.row.text-center.board_row
+												.col-12.col-md-8.text-left
+													span #{row.title}
+												.col-8.col-md-4.d-flex.last-col.justify-content-start.justify-content-lg-around
+													.text-muted.d-block.d-md-none #{row.writer}
+													.text-muted #{date.toLocaleDateString('ko').substr(2)}
+													.text-muted.d-block.d-md-none #{row.hit_count}
+									.col-2.d-block.d-md-none
 		.col-md-4
-			.card
+			.card.board_card
 				.card-header
-					h4.card-title  예신들의 결혼준비
+					.d-flex.justify-content-between
+						h4.card-title 예신예랑 결혼준비
+						a.text-warning.show-more.pr-2(href='/board/freeBoard') 더보기
 				.card-body
 					ul.list-group.list-group-flush
-						li.list-group-item.d-none.d-md-block.text-warning.font-weight-bold
-							.row.text-center
-								.col-8 제 목
-								.col-4.d-flex.justify-content-around.last-col
-									div 작성자
-									div 작성일
-									div 조회수
 						each row, idx in wedding
 							- var date = new Date(row.created_at)
 							li.list-group-item.py-2
-								.row.text-center
-									.col-12.col-md-8.text-left(style='font-size:1rem;')
-										a.text-dark(href='/board/read/' + row._id) #{row.title}
-									.col-8.col-md-4.d-flex.justify-content-start.last-col
-										.text-muted #{row.writer}
-										.text-muted #{date.toLocaleDateString('ko').substr(2)}
-										.text-muted #{row.hit_count}
+								.row
+									.col-10.col-md-12
+										a.text-dark(href='/board/read/' + row._id)
+											.row.text-center.board_row
+												.col-12.col-md-8.text-left
+													span #{row.title}
+												.col-8.col-md-4.d-flex.last-col.justify-content-start.justify-content-lg-around
+													.text-muted.d-block.d-md-none #{row.writer}
+													.text-muted #{date.toLocaleDateString('ko').substr(2)}
+													.text-muted.d-block.d-md-none #{row.hit_count}
+									.col-2.d-block.d-md-none
 		.col-md-4
-			.card
+			.card.board_card
 				.card-header
-					h4.card-title  주부선배 신혼생활
+					.d-flex.justify-content-between
+						h4.card-title 주부선배 신혼생활
+						a.text-warning.show-more.pr-2(href='/board/freeBoard') 더보기
 				.card-body
 					ul.list-group.list-group-flush
-						li.list-group-item.d-none.d-md-block.text-warning.font-weight-bold
-							.row.text-center
-								.col-8 제 목
-								.col-4.d-flex.justify-content-around.last-col
-									div 작성자
-									div 작성일
-									div 조회수
 						each row, idx in honeymoon
 							- var date = new Date(row.created_at)
 							li.list-group-item.py-2
-								.row.text-center
-									.col-12.col-md-8.text-left(style='font-size:1rem;')
-										a.text-dark(href='/board/read/' + row._id) #{row.title}
-									.col-8.col-md-4.d-flex.justify-content-start.last-col
-										.text-muted #{row.writer}
-										.text-muted #{date.toLocaleDateString('ko').substr(2)}
-										.text-muted #{row.hit_count}
+								.row
+									.col-10.col-md-12
+										a.text-dark(href='/board/read/' + row._id)
+											.row.text-center.board_row
+												.col-12.col-md-8.text-left
+													span #{row.title}
+												.col-8.col-md-4.d-flex.last-col.justify-content-start.justify-content-lg-around
+													.text-muted.d-block.d-md-none #{row.writer}
+													.text-muted #{date.toLocaleDateString('ko').substr(2)}
+													.text-muted.d-block.d-md-none #{row.hit_count}
+									.col-2.d-block.d-md-none
 	.row
 		.col-md-4
-			.card
+			.card.board_card
 				.card-header
-					h4.card-title  주방요리꿀팁
+					.d-flex.justify-content-between
+						h4.card-title 주방요리꿀팁
+						a.text-warning.show-more.pr-2(href='/board/freeBoard') 더보기
 				.card-body
 					ul.list-group.list-group-flush
-						li.list-group-item.d-none.d-md-block.text-warning.font-weight-bold
-							.row.text-center
-								.col-8 제 목
-								.col-4.d-flex.justify-content-around.last-col
-									div 작성자
-									div 작성일
-									div 조회수
 						each row, idx in tips
 							- var date = new Date(row.created_at)
 							li.list-group-item.py-2
-								.row.text-center
-									.col-12.col-md-8.text-left(style='font-size:1rem;')
-										a.text-dark(href='/board/read/' + row._id) #{row.title}
-									.col-8.col-md-4.d-flex.justify-content-start.last-col
-										.text-muted #{row.writer}
-										.text-muted #{date.toLocaleDateString('ko').substr(2)}
-										.text-muted #{row.hit_count}
+								.row
+									.col-10.col-md-12
+										a.text-dark(href='/board/read/' + row._id)
+											.row.text-center.board_row
+												.col-12.col-md-8.text-left
+													span #{row.title}
+												.col-8.col-md-4.d-flex.last-col.justify-content-start.justify-content-lg-around
+													.text-muted.d-block.d-md-none #{row.writer}
+													.text-muted #{date.toLocaleDateString('ko').substr(2)}
+													.text-muted.d-block.d-md-none #{row.hit_count}
+									.col-2.d-block.d-md-none
 		.col-md-4
-			.card
+			.card.board_card
 				.card-header
-					h4.card-title  생활의 지혜
+					.d-flex.justify-content-between
+						h4.card-title 생활의 지혜
+						a.text-warning.show-more.pr-2(href='/board/freeBoard') 더보기
 				.card-body
 					ul.list-group.list-group-flush
-						li.list-group-item.d-none.d-md-block.text-warning.font-weight-bold
-							.row.text-center
-								.col-8 제 목
-								.col-4.d-flex.justify-content-around.last-col
-									div 작성자
-									div 작성일
-									div 조회수
 						each row, idx in wisdom
 							- var date = new Date(row.created_at)
-							a.text-dark(href='/board/read/' + row._id)
-								li.list-group-item.py-2
-									.row.text-center
-										.col-12.col-md-8.text-left(style='font-size:1rem;') #{row.title}
-										.col-8.col-md-4.d-flex.justify-content-start.last-col
-											.text-muted #{row.writer}
-											.text-muted #{date.toLocaleDateString('ko').substr(2)}
-											.text-muted #{row.hit_count}
+							li.list-group-item.py-2
+								.row
+									.col-10.col-md-12
+										a.text-dark(href='/board/read/' + row._id)
+											.row.text-center.board_row
+												.col-12.col-md-8.text-left
+													span #{row.title}
+												.col-8.col-md-4.d-flex.last-col.justify-content-start.justify-content-lg-around
+													.text-muted.d-block.d-md-none #{row.writer}
+													.text-muted #{date.toLocaleDateString('ko').substr(2)}
+													.text-muted.d-block.d-md-none #{row.hit_count}
+									.col-2.d-block.d-md-none
 		.col-md-4
-			.card
+			.card.board_card
 				.card-header
-					h4.card-title  가성비갑 추천추천
+					.d-flex.justify-content-between
+						h4.card-title 가성비갑 추천추천
+						a.text-warning.show-more.pr-2(href='/board/freeBoard') 더보기
 				.card-body
 					ul.list-group.list-group-flush
-						li.list-group-item.d-none.d-md-block.text-warning.font-weight-bold
-							.row.text-center
-								.col-8 제 목
-								.col-4.d-flex.justify-content-around.last-col
-									div 작성자
-									div 작성일
-									div 조회수
 						each row, idx in recommend
 							- var date = new Date(row.created_at)
 							li.list-group-item.py-2
-								.row.text-center
-									.col-12.col-md-8.text-left(style='font-size:1rem;')
-										a.text-dark(href='/board/read/' + row._id) #{row.title}
-									.col-8.col-md-4.d-flex.justify-content-start.last-col
-										.text-muted #{row.writer}
-										.text-muted #{date.toLocaleDateString('ko').substr(2)}
-										.text-muted #{row.hit_count}
+								.row
+									.col-10.col-md-12
+										a.text-dark(href='/board/read/' + row._id)
+											.row.text-center.board_row
+												.col-12.col-md-8.text-left
+													span #{row.title}
+												.col-8.col-md-4.d-flex.last-col.justify-content-start.justify-content-lg-around
+													.text-muted.d-block.d-md-none #{row.writer}
+													.text-muted #{date.toLocaleDateString('ko').substr(2)}
+													.text-muted.d-block.d-md-none #{row.hit_count}
+									.col-2.d-block.d-md-none
 block append_js
 	script.
 		console.log(!{JSON.stringify(freeBoard)});

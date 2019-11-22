@@ -2,7 +2,7 @@
 style.
 	.navbar-nav{flex-direction: row;}
 	/*ul.navbar-nav li{margin:0px !important;}*/
-nav.navbar.navbar-expand-lg.navbar-absolute.fixed-top.navbar-transparent.py-2
+nav.navbar.navbar-expand-lg.navbar-absolute.fixed-top.navbar-transparent.py-2(style='background-color:beige !important;')
 	.container.px-3
 		.navbar-wrapper
 			.navbar-toggle.d-block
@@ -22,21 +22,21 @@ nav.navbar.navbar-expand-lg.navbar-absolute.fixed-top.navbar-transparent.py-2
 				li#headingSearch.nav-item.text-center
 					a.nav-link.btn-magnify.pb-0(href="#collapseSearch", role='button', data-toggle='collapse', aria-expanded='false', aria-controls='collapseSearch')
 						i.nc-icon.nc-zoom-split
-					p.text-dark.d-none.d-sm-block 검색
+					p.d-none.d-sm-block 검색
 				if(user)
 					li.nav_item
 						a.nav-link.btn-magnify.pb-0(data-toggle='modal', data-target='#modalProfile')
 							i.nc-icon.nc-single-02
-						p.text-dark.d-none.d-sm-block 내정보
+						p.d-none.d-sm-block 내정보
 				else
 					li.nav-item.text-center
 						a.nav-link.btn-rotate.pb-0(data-toggle='modal', data-target='#modalLogin')
 							i.nc-icon.nc-single-02
-						p.text-dark.d-none.d-sm-block 로그인
+						p.d-none.d-sm-block 로그인
 				li.nav-item.btn-rotate.text-center
 					a.nav-link.bnt-magnify.pb-0
 						i.nc-icon.nc-bell-55
-					p.text-dart.d-none.d-sm-block 알림
+					p.d-none.d-sm-block 알림
 // login 모달
 #modalLogin.modal.fade(tabindex="-1" role="dialog" aria-labelledby="modalLoginLabel" aria-hidden="true")
 	.modal-dialog(role="document")

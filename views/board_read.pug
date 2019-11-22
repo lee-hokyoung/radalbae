@@ -2,69 +2,68 @@ extends layout
 block content
 	style.
 		.dropdown-menu{border:1px solid rgba(0,0,0,.15);}
-	.content
-		.row
-			.col-md-12
-				.card
-					.card-header
-						h4.card-title #{title}
-					.card-body
+	.row
+		.col-md-12
+			.card
+				.card-header
+					h4.card-title #{title}
+				.card-body
+					.row
+						label.col-md-1.col-form-label.text-center 제목
+						.col-md-4
+							.form-group
+								input.form-control(type='text', name='title', value=doc.title, readonly)
+						label.col-md-1.col-form-label.text-center 작성자
+						.col-md-4
+							.form-group
+								input.form-control(type='text', name='writer', value=doc.writer, readonly)
+						.col-md-1
+							label.text-right 조회수
+						.col-md-1
+							label.text-center #{doc.hit_count}
+					.row
+						.col-12
+							.p-3.border.rounded#content
+
+					.text-center
+						a.btn.btn-primary(href='/board/' + doc.boardType) 목록으로
+	.row
+		.col-12
+			.card
+				.card-header
+					h4.card-title 댓글
+				.card-body
+					ul.list-group#reply_list
+						if(doc.reply.length > 0)
+							li.list-group-item.bg-secondary.text-white.font-weight-bold
+								.row
+									.col-md-2 작성자
+									.col-md-8 내용
+									.col-md-2 작성일시
+							each item, idx in doc.reply
+								- var date = new Date(doc.created_at)
+								li.list-group-item(class=idx%2===1?'list-group-item-secondary':'')
+									.row
+										.col-md-2.text-primary #{item.name} 님
+										.col-md-8 #{item.content}
+										.col-md-2 #{date.toLocaleString('ko')}
+					form(onsubmit='fnReplyCreate("' + doc._id.toString() + '"); return false;')
 						.row
-							label.col-md-1.col-form-label.text-center 제목
-							.col-md-4
+							.col-md-3
 								.form-group
-									input.form-control(type='text', name='title', value=doc.title, readonly)
-							label.col-md-1.col-form-label.text-center 작성자
-							.col-md-4
+									label 이름
+									input.form-control(type='text', name='name')
+							.col-md-3
 								.form-group
-									input.form-control(type='text', name='writer', value=doc.writer, readonly)
-							.col-md-1
-								label.text-right 조회수
-							.col-md-1
-								label.text-center #{doc.hit_count}
+									label 비밀번호
+									input.form-control(type='password', name='pw')
 						.row
 							.col-12
-								.p-3.border.rounded#content
-
-						.text-center
-							a.btn.btn-primary(href='/board/' + doc.boardType) 목록으로
-		.row
-			.col-12
-				.card
-					.card-header
-						h4.card-title 댓글
-					.card-body
-						ul.list-group#reply_list
-							if(doc.reply.length > 0)
-								li.list-group-item.bg-secondary.text-white.font-weight-bold
-									.row
-										.col-md-2 작성자
-										.col-md-8 내용
-										.col-md-2 작성일시
-								each item, idx in doc.reply
-									- var date = new Date(doc.created_at)
-									li.list-group-item(class=idx%2===1?'list-group-item-secondary':'')
-										.row
-											.col-md-2.text-primary #{item.name} 님
-											.col-md-8 #{item.content}
-											.col-md-2 #{date.toLocaleString('ko')}
-						form(onsubmit='fnReplyCreate("' + doc._id.toString() + '"); return false;')
-							.row
-								.col-md-3
-									.form-group
-										label 이름
-										input.form-control(type='text', name='name')
-								.col-md-3
-									.form-group
-										label 비밀번호
-										input.form-control(type='password', name='pw')
-							.row
-								.col-12
-									.form-group
-										textarea.form-control(name='content')
-							.row
-								.col-12.text-center
-									button.btn.btn-primary(type='subject') 댓글달기
+								.form-group
+									textarea.form-control(name='content')
+						.row
+							.col-12.text-center
+								button.btn.btn-primary(type='subject') 댓글달기
 
 block append_js
 	link(href = "https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel = "stylesheet")
