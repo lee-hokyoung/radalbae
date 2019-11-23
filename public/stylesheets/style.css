@@ -129,7 +129,7 @@ ul#radalbae_nav li:hover p:before, ul#radalbae_nav li.active p:before {
 .show-more{line-height: 44px;display: flex;padding-right: 40px;}
 .show-more:after{content:url(/images/right-arrow.svg);position: relative;top: 4px;width: 20px;}
 
-.footer ul li a:after{
+.footer ul li a:after, .content-header ul li:after{
     content:'';
     background: url("/images/vertical-bar.svg") no-repeat;
     -webkit-background-size: contain;
@@ -140,7 +140,7 @@ ul#radalbae_nav li:hover p:before, ul#radalbae_nav li.active p:before {
     margin-top: 5px;
     margin-left: 3px;
 }
-.footer ul li:last-child     a:after{content:''; background: none;}
+.footer ul li:last-child a:after, .content-header ul li:last-child:after{content:''; background: none;}
 #collapseSearch{width:0; visibility: collapse;}
 /* login 팝업 창 */
 #loginModal{max-width:345px;}
@@ -163,6 +163,21 @@ ul#radalbae_nav li:hover p:before, ul#radalbae_nav li.active p:before {
 #loginModal .division .line.l{left:0}
 #loginModal .division .line.r{right:0}
 #loginModal input{height:50px;}
+
+.content-title{font-size:22px; letter-spacing: -1px; font-weight: 700;}
+.content-header ul{list-style: none; padding-left:1rem;}
+.content-header ul li{display: inline-block; padding-right: 1rem;}
+.content-header ul li:after{
+    content:'';
+    background: url("/images/vertical-bar_dark.svg") no-repeat;
+    -webkit-background-size: contain;
+    background-size: contain;
+}
+.content-body{min-height:20vh; font-size:15px;}
+#reply-list img{opacity:.5;}
+#reply-list > div{border-bottom:1px dotted #999;}
+#reply-list .reply-header span{font-size:.8rem; padding-left:.5rem;}
+
 /* 모바일 화면(pc 이외의 화면)*/
 @media screen and (max-width: 991px) {
     #main_nav{display:none !important;}

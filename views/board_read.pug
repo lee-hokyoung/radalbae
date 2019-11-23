@@ -1,52 +1,47 @@
 extends layout
 block content
-	style.
-		.dropdown-menu{border:1px solid rgba(0,0,0,.15);}
 	.row
 		.col-md-12
 			.card
-				.card-header
-					h4.card-title #{title}
 				.card-body
 					.row
-						label.col-md-1.col-form-label.text-center 제목
-						.col-md-4
-							.form-group
-								input.form-control(type='text', name='title', value=doc.title, readonly)
-						label.col-md-1.col-form-label.text-center 작성자
-						.col-md-4
-							.form-group
-								input.form-control(type='text', name='writer', value=doc.writer, readonly)
-						.col-md-1
-							label.text-right 조회수
-						.col-md-1
-							label.text-center #{doc.hit_count}
-					.row
 						.col-12
-							.p-3.border.rounded#content
-
+							.content-title 제 목  :  #{doc.title}
+					.row.content-header.text-muted.pt-4
+						- var date = new Date(doc.created_at)
+						ul
+							li #{doc.writer}
+							li 조회수 : #{doc.hit_count}
+							li #{date.toLocaleString('ko', {hour12:false, year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'})}
+					hr.mt-1
+					.row.content-body
+						.col
+							#content
+					//hr.my-1
 					.text-center
 						a.btn.btn-primary(href='/board/' + doc.boardType) 목록으로
+					if(doc.reply.length > 0)
+						#reply-list
+							span.text-dark.p-3
+								strong #{doc.reply.length}
+								| 개의 댓글이 있습니다.
+							each item, idx in doc.reply
+								- var date = new Date(doc.created_at)
+								.d-flex.justify-content-start.py-2
+									img(src='/images/logo.png', height='35')
+									.d-flex.flex-column.pl-2
+										.reply-header
+											strong #{item.name}
+											span.text-muted #{date.toLocaleString('ko', {hour12:false, year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'})}
+										.reply-content
+											span #{item.content}
 	.row
 		.col-12
 			.card
 				.card-header
 					h4.card-title 댓글
 				.card-body
-					ul.list-group#reply_list
-						if(doc.reply.length > 0)
-							li.list-group-item.bg-secondary.text-white.font-weight-bold
-								.row
-									.col-md-2 작성자
-									.col-md-8 내용
-									.col-md-2 작성일시
-							each item, idx in doc.reply
-								- var date = new Date(doc.created_at)
-								li.list-group-item(class=idx%2===1?'list-group-item-secondary':'')
-									.row
-										.col-md-2.text-primary #{item.name} 님
-										.col-md-8 #{item.content}
-										.col-md-2 #{date.toLocaleString('ko')}
+
 					form(onsubmit='fnReplyCreate("' + doc._id.toString() + '"); return false;')
 						.row
 							.col-md-3

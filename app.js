@@ -2,6 +2,7 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const session = require('express-session')
 const logger = require('morgan');
 require('dotenv').config();
 
@@ -12,9 +13,6 @@ const app = express();
 const connect = require('./model');
 connect();
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const boardRouter = require('./routes/board');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,8 +24,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/nm', express.static(path.join(__dirname, 'node_modules')));
+app.use(session({
+  secret: process.env.COOKIE_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  // cookie: { secure: true }
+}));
+
 app.use(passport.initialize());
 passportConfig();
+
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const boardRouter = require('./routes/board');
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
