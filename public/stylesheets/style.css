@@ -28,6 +28,18 @@ ul#radalbae_nav li p {
 .sidebar .sidebar-wrapper{width:210px;}
 .sidebar .logo img{width:40px}
 .sidebar .logo a{font-size:16px;}
+.sidebar .profile-img{
+    width: 40px;
+    height: 40px;
+    -webkit-background-size: contain;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: inline-block;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    vertical-align: middle;
+}
 
 ul#radalbae_nav li p:before {
     /*content: '';*/
