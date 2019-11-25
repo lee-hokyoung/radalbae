@@ -10,7 +10,7 @@ block content
 				.card-header
 					.d-flex.justify-content-between
 						h4.card-title 전체글
-						a.text-warning.show-more(href='/board/freeBoard') 더보기
+						a.text-warning.show-more(href='/board/entire') 더보기
 				.card-body
 					ul.list-group.list-group-flush
 						each row, idx in allBoard
@@ -72,7 +72,7 @@ block content
 				.card-header
 					.d-flex.justify-content-between
 						h4.card-title 예신예랑 결혼준비
-						a.text-warning.show-more.pr-2(href='/board/freeBoard') 더보기
+						a.text-warning.show-more.pr-2(href='/board/wedding') 더보기
 				.card-body
 					ul.list-group.list-group-flush
 						each row, idx in wedding
@@ -94,7 +94,7 @@ block content
 				.card-header
 					.d-flex.justify-content-between
 						h4.card-title 주부선배 신혼생활
-						a.text-warning.show-more.pr-2(href='/board/freeBoard') 더보기
+						a.text-warning.show-more.pr-2(href='/board/honeymoon') 더보기
 				.card-body
 					ul.list-group.list-group-flush
 						each row, idx in honeymoon
@@ -117,7 +117,7 @@ block content
 				.card-header
 					.d-flex.justify-content-between
 						h4.card-title 주방요리꿀팁
-						a.text-warning.show-more.pr-2(href='/board/freeBoard') 더보기
+						a.text-warning.show-more.pr-2(href='/board/tips') 더보기
 				.card-body
 					ul.list-group.list-group-flush
 						each row, idx in tips
@@ -139,7 +139,7 @@ block content
 				.card-header
 					.d-flex.justify-content-between
 						h4.card-title 생활의 지혜
-						a.text-warning.show-more.pr-2(href='/board/freeBoard') 더보기
+						a.text-warning.show-more.pr-2(href='/board/wisdom') 더보기
 				.card-body
 					ul.list-group.list-group-flush
 						each row, idx in wisdom
@@ -161,7 +161,7 @@ block content
 				.card-header
 					.d-flex.justify-content-between
 						h4.card-title 가성비갑 추천추천
-						a.text-warning.show-more.pr-2(href='/board/freeBoard') 더보기
+						a.text-warning.show-more.pr-2(href='/board/recommend') 더보기
 				.card-body
 					ul.list-group.list-group-flush
 						each row, idx in recommend
@@ -180,4 +180,4 @@ block content
 									.col-2.d-block.d-md-none
 block append_js
 	script.
-		console.log(!{JSON.stringify(freeBoard)});
+		console.log(!{JSON.stringify(user)});

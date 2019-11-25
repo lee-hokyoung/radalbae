@@ -3,7 +3,10 @@
     Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
   .logo.py-3
     //i.nc-icon.nc-single-02
-    img(src="/images/pilgoo.svg")
+    if(user)
+      .profile-img(style=`background-image:url(${user.profile_image})`)
+    else
+      img(src='/images/pilgoo.svg', width=40)
     a.text-dark.pl-3(href='/users/login') 로그인
   .sidebar-wrapper
     ul.nav#radalbae_nav

@@ -10,7 +10,14 @@ const UserSchema = new Schema({
   user_lv:{type:Number, default: 1},
   created_at:{type:Date, default:Date.now},
   status:{type:Number, default:1},
-  token:String
+  snsId:String,
+  provider:String,
+  profile_image:String,
+  thumbnail_image:String,
+  email:String,
+  age_range:String,
+  birthday:String,
+  gender:String
 });
 UserSchema.methods.setPassword = async function(pwd){
   const hash = await bcrypt.hash(pwd, 10);

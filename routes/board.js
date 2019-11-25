@@ -34,7 +34,7 @@ const getTitle = (boardType) => {
 
 // 게시판 list
 router.get('/:boardType', async (req, res) => {
-  let user = res.locals.user_info;
+  let user = req.user;
   let boardType = req.params.boardType;
   let query = {};
   console.log('user : ', user);
@@ -48,8 +48,8 @@ router.get('/:boardType', async (req, res) => {
   });
 });
 // 글 쓰기 화면으로 이동
-router.get('/write/:boardType', middle.checkAuth, (req, res) => {
-  let user = res.locals.user_info;
+router.get('/write/:boardType', middle.isLoggedIn, (req, res) => {
+  let user = req.user;
   let boardType = req.params.boardType;
   res.render('board_write', {
     title: getTitle(boardType),
@@ -58,8 +58,8 @@ router.get('/write/:boardType', middle.checkAuth, (req, res) => {
   })
 });
 // 글 쓰기
-router.post('/:boardType', middle.checkAuth, async (req, res) => {
-  let user = res.locals.user_info;
+router.post('/:boardType', middle.isLoggedIn, async (req, res) => {
+  let user = req.user;
   console.log('user : ', user);
   let boardType = req.params.boardType;
   let {title, writer, content} = req.body;
@@ -75,18 +75,21 @@ router.post('/:boardType', middle.checkAuth, async (req, res) => {
 });
 // 글 읽기
 router.get('/read/:id', async (req, res) => {
+  let user = req.user;
   let id = req.params.id;
-  let doc = await boardModel.findOne({_id: id});
-  console.log('doc : ', doc);
+  let doc = await boardModel.findOne({_id:id}).populate('reply._id');
+  // console.log('doc : ', doc);
   // 조회수 올리기
   await boardModel.updateOne({_id: id}, {hit_count: doc.hit_count + 1});
   res.render('board_read', {
-    doc: doc
+    doc: doc,
+    user:user,
+    boardTitle:getTitle(doc.boardType)
   })
 });
 // 댓글 달기
-router.post('/reply/:content_id', middle.checkAuth, async (req, res) => {
-  let user = res.locals.user_info;
+router.post('/reply/:content_id', async (req, res) => {
+  let user = req.user;
   if (!user) {
     res.json({message: '사용자 정보가 없습니다. ', code: -1});
     return false;
@@ -97,7 +100,6 @@ router.post('/reply/:content_id', middle.checkAuth, async (req, res) => {
         reply: {
           _id: user._id,
           name: req.body.name,
-          pw: req.body.pw,
           content: req.body.content
         }
       }

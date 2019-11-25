@@ -1,12 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const middle = require('./middleware');
 const jwt = require('jsonwebtoken');
 const boardModel = require('../model/boardModel');
 
 /* GET home page. */
 router.get('/', async (req, res, next) => {
-  let user = '';
+  let user = req.user;
   let access_token = req.cookies.access_token;
   if(access_token){
     let decoded = jwt.verify(access_token, process.env.JWT_SECRET);
