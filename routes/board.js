@@ -75,14 +75,17 @@ router.post('/:boardType', middle.isLoggedIn, async (req, res) => {
 });
 // 글 읽기
 router.get('/read/:id', async (req, res) => {
+  console.log('req : ', req.user);
   let user = req.user;
   let id = req.params.id;
-  let doc = await boardModel.findOne({_id: id});
-  console.log('doc : ', doc);
+  let doc = await boardModel.findOne({_id:id}).populate('reply._id');
+  // console.log('doc : ', doc);
   // 조회수 올리기
   await boardModel.updateOne({_id: id}, {hit_count: doc.hit_count + 1});
   res.render('board_read', {
-    doc: doc
+    doc: doc,
+    user:user,
+    boardTitle:getTitle(doc.boardType)
   })
 });
 // 댓글 달기
@@ -98,7 +101,6 @@ router.post('/reply/:content_id', async (req, res) => {
         reply: {
           _id: user._id,
           name: req.body.name,
-          pw: req.body.pw,
           content: req.body.content
         }
       }

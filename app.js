@@ -1,4 +1,5 @@
 const createError = require('http-errors');
+const compression = require('compression');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -24,12 +25,17 @@ connect();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(compression());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser(process.env.COOKIE_SECRET));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/nm', express.static(path.join(__dirname, 'node_modules')));
+app.use(express.static(path.join(__dirname, 'public'), {
+  maxAge:'1d'
+}));
+app.use('/nm', express.static(path.join(__dirname, 'node_modules'), {
+  maxAge: '1d'
+}));
 app.use(session({
   secret: process.env.COOKIE_SECRET,
   resave: false,

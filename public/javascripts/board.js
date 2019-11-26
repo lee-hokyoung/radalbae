@@ -43,16 +43,10 @@ function fnWrite(){
 // 댓글작성
 function fnReplyCreate(content_id){
   let name = document.querySelector('input[name="name"]');
-  let pw = document.querySelector('input[name="pw"]');
   let content = document.querySelector('textarea');
   if(!name.value){
     alert('이름을 입력해주세요');
     name.focus();
-    return false;
-  }
-  if(!pw.value){
-    alert('비밀번호를 입력해주세요');
-    pw.focus();
     return false;
   }
   if(!content.value){
@@ -70,19 +64,27 @@ function fnReplyCreate(content_id){
         alert(res.message);
         return false;
       }
-      fnGenerateReplyHTML(res.result, name.value, content.value);
+      console.log('start');
+      fnGenerateReplyHTML(name.value, content.value);
     }
   };
-  xhr.send(JSON.stringify({name:name.value, pw:pw.value, content:content.value}));
+  xhr.send(JSON.stringify({name:name.value, content:content.value}));
 }
 
 // 댓글 HTML 생성
-function fnGenerateReplyHTML(res, name, content){
-  let html = '<li class="list-group-item list-group-item-primary">' +
-    '<div class="row">' +
-      '<div class="col-md-2 text-primary">' + name + ' 님</div>' +
-      '<div class="col-md-10">' + content + '</div>' +
-    '</div>' +
-  '</li>';
-  $('#reply_list').append(html);
+function fnGenerateReplyHTML(content){
+  let profile_img = document.querySelector('input[name="profile_img"]');
+  let html = '<div class="d-flex justify-content-start py-2">' +
+      '<img src="/images/logo.png" height="35">' +
+      '<div class="d-flex flex-column pl-2">' +
+        '<div class="reply-header">' +
+          '<strong>' + name + '</strong>' +
+          '<span class="text-muted">지금</span>' +
+        '</div>' +
+        '<div class="reply-content">' +
+          '<span style="white-space:pre">' + content + '</span>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  $('#reply-list').append(html);
 }

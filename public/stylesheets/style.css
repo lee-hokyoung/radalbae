@@ -4,6 +4,8 @@
     font-size: 2.5em !important;
     font-weight: 400;
 }
+p{margin-bottom:0;}
+textarea::placeholder{color:lightgray; font-size:12px;}
 .board_row div:first-child{
     height: 21px;
     line-height: 21px;
@@ -28,7 +30,7 @@ ul#radalbae_nav li p {
 .sidebar .sidebar-wrapper{width:210px;}
 .sidebar .logo img{width:40px}
 .sidebar .logo a{font-size:16px;}
-.sidebar .profile-img{
+.sidebar .profile-img, .reply-profile-img{
     width: 40px;
     height: 40px;
     -webkit-background-size: cover;
@@ -40,6 +42,8 @@ ul#radalbae_nav li p {
     border: 1px solid #ddd;
     vertical-align: middle;
 }
+.reply-profile-img{width:35px; height:35px;}
+textarea.form-control{line-height: 1}
 
 ul#radalbae_nav li p:before {
     /*content: '';*/
@@ -189,7 +193,7 @@ ul#radalbae_nav li:hover p:before, ul#radalbae_nav li.active p:before {
 #reply-list img{opacity:.5;}
 #reply-list > div{border-bottom:1px dotted #999;}
 #reply-list .reply-header span{font-size:.8rem; padding-left:.5rem;}
-
+.btn-wrap .btn{padding:.25rem .5rem;}
 /* 모바일 화면(pc 이외의 화면)*/
 @media screen and (max-width: 991px) {
     #main_nav{display:none !important;}

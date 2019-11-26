@@ -6,17 +6,23 @@ block content
 		.col-md-12
 			.card
 				.card-header
-					h4.card-title #{title}
-				.card-body
+					h4.card-title 글쓰기
 					.row
-						label.col-md-1.col-form-label 제목
-						.col-md-5
+						.col-md-6
 							.form-group
-								input.form-control(type='text', name='title')
-						label.col-md-1.col-form-label 작성자
-						.col-md-5
-							.form-group
-								input.form-control(type='text', name='writer', value=user.user_name)
+								select.form-control.px-2.py-1(name='boardType')
+									option(value='entire') 카테고리 선택
+									option(value='freeBoard', selected=side==='freeBoard') 자유게시판
+									option(value='wedding', selected=side==='wedding') 예신들의 결혼준비
+									option(value='honeymoon', selected=side==='honeymoon') 주부선배 신혼생활
+									option(value='tips', selected=side==='tips') 주방요리꿀팁
+									option(value='wisdom', selected=side==='wisdom') 생활의 지혜
+									option(value='recommend', selected=side==='recommend') 가성비갑 추천추천
+					.d-flex.justify-content-start
+						.form-group(style='flex:1')
+							input.form-control(type='text', name='title', placeholder='제목을 입력하세요')
+
+				.card-body
 					.row
 						.col-12
 							#summernote

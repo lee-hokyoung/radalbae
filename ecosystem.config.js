@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "radalman",
+      name: "radalbae",
       // pm2로 실행될 파일 경로
       script: "./bin/www",
       // 개발환경시 적용될 설정 지정

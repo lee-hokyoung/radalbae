@@ -1,64 +1,61 @@
 extends layout
 block content
-	.row
+	.row(style='letter-spacing:-1px;')
 		.col-md-12
 			.card
 				.card-body
 					.row
 						.col-12
+							a.text-warning(href='/board/' + doc.boardType) < #{boardTitle}
+					.row
+						.col-12
 							.content-title 제 목  :  #{doc.title}
-					.row.content-header.text-muted.pt-4
+					.row.content-header.text-muted.pt-2
 						- var date = new Date(doc.created_at)
-						ul
+						ul.mb-0
 							li #{doc.writer}
-							li 조회수 : #{doc.hit_count}
 							li #{date.toLocaleString('ko', {hour12:false, year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'})}
+							li 조회수 : #{doc.hit_count}
 					hr.mt-1
 					.row.content-body
 						.col
 							#content
-					//hr.my-1
-					.text-center
-						a.btn.btn-primary(href='/board/' + doc.boardType) 목록으로
 					if(doc.reply.length > 0)
-						#reply-list
-							span.text-dark.p-3
-								strong #{doc.reply.length}
-								| 개의 댓글이 있습니다.
+						#reply-list.mt-3
+							.d-flex.justify-content-between
+								span.text-dark.p-3
+									strong #{doc.reply.length}
+									| 개의 댓글이 있습니다 >
+								.btn-wrap
+									a.btn(style='background-color:darkgray', href='/board/' + doc.boardType) 목록
+									a.btn.btn-warning(href='/board/write/' + doc.boardType) 글쓰기
 							each item, idx in doc.reply
-								- var date = new Date(doc.created_at)
+								- var date = new Date(item.created_at)
+								- var user_img = item._id.profile_image || '/images/logo.png'
 								.d-flex.justify-content-start.py-2
-									img(src='/images/logo.png', height='35')
+									.reply-profile-img(style=`background-image:url(${user_img})`)
+									//img(src=user_img, height='35')
 									.d-flex.flex-column.pl-2
 										.reply-header
 											strong #{item.name}
 											span.text-muted #{date.toLocaleString('ko', {hour12:false, year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'})}
 										.reply-content
-											span #{item.content}
-	.row
-		.col-12
-			.card
-				.card-header
-					h4.card-title 댓글
-				.card-body
-
-					form(onsubmit='fnReplyCreate("' + doc._id.toString() + '"); return false;')
-						.row
-							.col-md-3
-								.form-group
-									label 이름
-									input.form-control(type='text', name='name')
-							.col-md-3
-								.form-group
-									label 비밀번호
-									input.form-control(type='password', name='pw')
-						.row
-							.col-12
-								.form-group
-									textarea.form-control(name='content')
-						.row
-							.col-12.text-center
-								button.btn.btn-primary(type='subject') 댓글달기
+											span(style='white-space:pre') #{item.content}
+					.mt-3
+						if(user)
+							input(type='hidden', name='profile_img', value=user.profile_image)
+							form(onsubmit='fnReplyCreate("' + doc._id.toString() + '"); return false;')
+								.row
+									.col-12.col-md-9
+										.form-group
+											.d-flex.justify-content-start
+												textarea.form-control(name='content', rows='3', placeholder='비방, 홍보 및 유해성 댓글은 관리자에 의해 삭제 될 수 있습니다.')
+												button.btn.btn-warning.my-0(type='subject') 등록
+						else
+							.row
+								.col
+									.form-group
+										input.form-control(type='text', placeholder='댓글을 남겨보세요.', onclick='showLoginModal()')
 
 block append_js
 	link(href = "https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel = "stylesheet")
@@ -69,5 +66,7 @@ block append_js
 		$(document).ready(function () {
 			$('#content').html(!{JSON.stringify(doc.content)});
 		});
-
+		function showLoginModal(){
+			$('#loginModal').modal('show');
+		}
 

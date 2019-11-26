@@ -13,7 +13,6 @@ const boardSchema = new Schema({
     {
       _id: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
       name: String,
-      pw: String,
       content: String,
       created_at: {type: Date, default: Date.now}
     }
