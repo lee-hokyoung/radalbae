@@ -75,6 +75,7 @@ router.post('/:boardType', middle.isLoggedIn, async (req, res) => {
 });
 // 글 읽기
 router.get('/read/:id', async (req, res) => {
+  console.log('req : ', req.user);
   let user = req.user;
   let id = req.params.id;
   let doc = await boardModel.findOne({_id:id}).populate('reply._id');
