@@ -100,7 +100,7 @@ router.post('/reply/:content_id', async (req, res) => {
       $push: {
         reply: {
           _id: user._id,
-          name: req.body.name,
+          name: user.user_name,
           content: req.body.content
         }
       }

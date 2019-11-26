@@ -31,7 +31,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(express.static(path.join(__dirname, 'public'), {
-  maxAge:'1d'
+  // maxAge:'1d'
 }));
 app.use('/nm', express.static(path.join(__dirname, 'node_modules'), {
   maxAge: '1d'
