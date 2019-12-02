@@ -42,7 +42,15 @@ ul#radalbae_nav li p {
     border: 1px solid #ddd;
     vertical-align: middle;
 }
-.reply-profile-img{width:35px; height:35px;}
+.reply-profile-img{width:35px; height:35px; min-width:35px;}
+.reply-content span{white-space: normal;}
+.reply-wrap{background-color:white;
+    -webkit-transition: background-color 2s;
+    -moz-transition: background-color 2s;
+    -ms-transition: background-color 2s;
+    -o-transition: background-color 2s;
+    transition: background-color 2s;}
+
 textarea.form-control{line-height: 1}
 
 ul#radalbae_nav li p:before {
