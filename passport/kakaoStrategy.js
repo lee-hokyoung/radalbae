@@ -1,7 +1,6 @@
 const kakaoStrategy = require('passport-kakao').Strategy;
 const userModel = require('../model/userModel');
-
-module.exports = (passport) => {
+module.exports = async (passport) => {
   passport.use(new kakaoStrategy({
     clientID:process.env.KAKAO_REST_API_KEY,
     clientSecret:'',
@@ -13,8 +12,6 @@ module.exports = (passport) => {
         done(null, exUser);
       }else{
         let kakao_info = profile._json.kakao_account;
-        console.log('kakao_info : ', kakao_info);
-        console.log('profile : ', kakao_info.profile);
         const newUser = await userModel.create({
           user_id:profile.provider + '_' + profile.id,
           user_name:profile.username,
